@@ -61,12 +61,10 @@ async function displayProducts() {
 
 async function displaySingleProduct(id) {
   const product = await getProductById(id);
-
   const viewContainer = document.getElementById("product-view");
 
-
   viewContainer.innerHTML = `
-    <div class="card">
+    <div class="card mb-3">
       <img src="${product.thumbnail || 'https://via.placeholder.com/150'}" class="card-img-top" alt="${product.productName}">
       <div class="card-body">
         <h5 class="card-title">${product.productName}</h5>
@@ -75,9 +73,29 @@ async function displaySingleProduct(id) {
         ${product.category ? `<p class="card-text"><strong>Category:</strong> ${product.category}</p>` : ''}
         ${product.stock ? `<p class="card-text"><strong>Stock:</strong> ${product.stock}</p>` : ''}
         ${product.manufacturer ? `<p class="card-text"><strong>Manufacturer:</strong> ${product.manufacturer}</p>` : ''}
+
+        <hr>
+        <h6>Update Price & Stock</h6>
+        <form id="frm-update-product">
+          <input type="number" name="price" placeholder="New Price" value="${product.price}" class="form-control mb-2" required />
+          <input type="number" name="stock" placeholder="New Stock" value="${product.stock || 0}" class="form-control mb-2" required />
+          <button type="submit" class="btn btn-success btn-sm">Update</button>
+        </form>
       </div>
     </div>
   `;
+
+  
+  document.getElementById("frm-update-product").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const updatedData = {
+      price: parseFloat(event.target.price.value),
+      stock: parseInt(event.target.stock.value)
+    };
+
+    updateProduct(id, updatedData);
+  });
 }
 
 
