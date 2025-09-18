@@ -98,6 +98,26 @@ async function displaySingleProduct(id) {
   });
 }
 
+function updateProduct(id, updatedData) {
+  fetch(`http://localhost:3000/products/${id}`, {
+    method: "PATCH", // or "PUT" depending on your backend
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify(updatedData)
+  })
+  .then(response => response.json())
+  .then(updatedProduct => {
+    alert("Product updated successfully!");
+    displaySingleProduct(id); // Refresh the single product view
+    displayProducts(); // Optionally refresh the product list
+  })
+  .catch(error => {
+    console.error("Error updating product:", error);
+    alert("Failed to update product.");
+  });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 
