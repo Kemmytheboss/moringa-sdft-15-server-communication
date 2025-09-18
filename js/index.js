@@ -59,6 +59,28 @@ async function displayProducts() {
     }
 }
 
+async function displaySingleProduct(id) {
+  const product = await getProductById(id);
+
+  const viewContainer = document.getElementById("product-view");
+
+
+  viewContainer.innerHTML = `
+    <div class="card">
+      <img src="${product.thumbnail || 'https://via.placeholder.com/150'}" class="card-img-top" alt="${product.productName}">
+      <div class="card-body">
+        <h5 class="card-title">${product.productName}</h5>
+        <p class="card-text"><strong>Price:</strong> Ksh. ${product.price}</p>
+        <p class="card-text"><strong>Description:</strong> ${product.description}</p>
+        ${product.category ? `<p class="card-text"><strong>Category:</strong> ${product.category}</p>` : ''}
+        ${product.stock ? `<p class="card-text"><strong>Stock:</strong> ${product.stock}</p>` : ''}
+        ${product.manufacturer ? `<p class="card-text"><strong>Manufacturer:</strong> ${product.manufacturer}</p>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
     displayProducts()

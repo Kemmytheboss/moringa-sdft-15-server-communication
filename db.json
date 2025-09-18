@@ -13,18 +13,6 @@
       "thumbnail": "https://picsum.photos/300/300/?image=997"
     },
     {
-      "id": "48",
-      "productName": "Awesome Fresh Cheese",
-      "description": "Handmade Fresh Shoes",
-      "category": "Handmade Granite Shirt",
-      "price": 36.28,
-      "stock": 41,
-      "manufacturer": "Gorczany - Marvin",
-      "sku": 530,
-      "image": "https://picsum.photos/640/480/?image=316",
-      "thumbnail": "https://picsum.photos/300/300/?image=985"
-    },
-    {
       "id": "36",
       "productName": "Ergonomic Concrete Cheese",
       "description": "Rustic Granite Pants",
